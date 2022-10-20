@@ -1,12 +1,15 @@
 package steps;
 
 import cucumber.api.java.en.*;
+import pages.GooglePage;
 
 public class GoogleSteps {
 	
+	GooglePage google = new GooglePage();
+	
 	@Given("^I am on the Google Search page$")
 	public void navigateGoogle() {
-		
+		google.navigateToGoogle();
 	}
 	
 	@When("^I enter a search critera$")
