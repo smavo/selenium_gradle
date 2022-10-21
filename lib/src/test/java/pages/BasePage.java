@@ -1,9 +1,13 @@
 package pages;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
+import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,6 +39,14 @@ public class BasePage{
 		driver.get(url);
 	}
 	
+    public void goToLinkText(String linkText){
+        driver.findElement(By.linkText(linkText)).click();;
+    }
+	
+    public static void closeBrowser(){
+        driver.quit();
+    }
+	
 	private WebElement Find(String locator) {
 		return wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locator))); 
 	}
@@ -42,6 +54,10 @@ public class BasePage{
 	public void clickElement(String locator) {
 		Find(locator).click();
 	}
+	
+    public void submitElement(String locator){
+        Find(locator).submit();
+    }
 	
 	public void write(String locator, String textToWrite) {
 		Find(locator).clear();
@@ -52,6 +68,12 @@ public class BasePage{
 		 Select dropDown = new Select (Find(locator));
 		 dropDown.selectByValue(valueToSelect);
 	 }
+	 
+	 public void getScreenshot(String locator, String nameOfFile) throws IOException{
+	     File file = Find(locator).getScreenshotAs(OutputType.FILE);
+	     FileUtils.copyFile(file,new File(nameOfFile+".png"));
+	 }
+
 	 
 	 public void selectFromDropdownByIndex(String locator, int valueToSelect) {
 		 Select dropDown = new Select (Find(locator));
@@ -121,6 +143,28 @@ public class BasePage{
 
 	 public List<WebElement> bringMeAllElements(String locator){
 	     return driver.findElements(By.className(locator));
-	 }	 
+	 }
+
+	 public void selectNthElementFromList(String locator, int index){
+	     List<WebElement> list = driver.findElements(By.className(locator));
+	     list.get(index).click();
+	 }
+
+	 public void dragAndDrop(String locator, String locator2){
+	     WebElement element = Find(locator);
+	     WebElement element2 = Find(locator2);
+	     action.dragAndDrop(element, element2).build().perform();
+	 }
+
+	 public void selectCriteriaFromList(String locator, String criteria){
+	     List<WebElement> list = driver.findElements(By.className(locator));
+	     for(WebElement element : list){
+	         if(element.getText().equals(criteria)){
+	             element.click();
+	             break;
+	         }
+	     }
+	 }
+	    
 	 
 }
