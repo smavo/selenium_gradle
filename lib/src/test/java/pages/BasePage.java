@@ -1,5 +1,7 @@
 package pages;
 
+import java.util.List;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
@@ -111,4 +113,14 @@ public class BasePage{
 	 public boolean elementIsDisplayed(String locator){
 	     return Find(locator).isDisplayed();
 	 }
+	 
+	 public boolean elementIsSelected(String locator){
+
+		 return Find(locator).isSelected();
+	 }
+
+	 public List<WebElement> bringMeAllElements(String locator){
+	     return driver.findElements(By.className(locator));
+	 }	 
+	 
 }
