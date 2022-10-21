@@ -29,6 +29,6 @@ public class ListSteps {
         }else{
             throw new Error("The text is not on the list: FAILED!");
         }
-        
+
     }
 }

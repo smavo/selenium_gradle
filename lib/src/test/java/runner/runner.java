@@ -21,6 +21,5 @@ public class runner {
 	@AfterClass
     public static void cleanDriver(){
         BasePage.closeBrowser();
-
     }
 }
