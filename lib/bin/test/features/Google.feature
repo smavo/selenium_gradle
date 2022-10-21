@@ -2,7 +2,7 @@
 Feature: Title of your feature
   I want to use this template for my feature file
 
-  
+  ##@Testing
   Scenario: Title of your scenario
     Given I am on the Google Search page
     When I enter a search critera

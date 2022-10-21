@@ -9,6 +9,7 @@ import cucumber.api.junit.Cucumber;
 @CucumberOptions(features="src/test/resources/features",  
 		glue={"steps"},
 		monochrome = true,
+		tags = "@Testing",
 		strict = true)
 
 public class runner {
